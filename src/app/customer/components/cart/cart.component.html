@@ -1,0 +1,72 @@
+<div class="container mt-5" *ngIf="cartItems.length > 0; else emptyCart">
+    <div class="row">
+        <!-- Cart Items Column -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-4" *ngFor="let item of cartItems">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-3">
+                        <img [src]="item.processedImg" class="img-fluid rounded-start h-100 object-fit-cover"
+                            alt="Product Image" style="max-height: 150px; width: 100%;">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-primary">{{item.productName}}</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <p class="card-text mb-0 fs-5 fw-bold">${{item.price}}</p>
+                                <div class="d-flex align-items-center">
+                                    <span class="text-muted me-2">Quantity:</span>
+                                    <span class="badge bg-secondary fs-6">{{item.quantity}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary Column -->
+        <div class="col-lg-4">
+            <div class="card shadow-lg border-0 bg-light">
+                <div class="card-body p-4">
+                    <h4 class="card-title mb-4 fw-bold">Order Summary</h4>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted">Subtotal</span>
+                        <span class="fw-bold">${{order?.totalAmount}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3" *ngIf="order?.couponName">
+                        <span class="text-muted">Coupon ({{order?.couponName}})</span>
+                        <span class="text-success">- Applied</span>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="h5 fw-bold">Total</span>
+                        <span class="h5 fw-bold text-primary">${{order?.amount}}</span>
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" routerLink="/customer/place_order">
+                            Proceed to Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #emptyCart>
+    <div class="container mt-5 text-center">
+        <div class="py-5">
+            <i class="material-icons text-muted" style="font-size: 6rem;">remove_shopping_cart</i>
+            <h2 class="mt-4 fw-bold text-secondary">Your cart is empty!</h2>
+            <p class="text-muted mb-4">Looks like you haven't added anything to your cart yet.</p>
+            <button class="btn btn-primary btn-lg px-5" routerLink="/customer/dashboard">
+                Start Shopping
+            </button>
+        </div>
+    </div>
+</ng-template>

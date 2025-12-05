@@ -1,0 +1,9 @@
+/* Admin Dashboard Styles */
+/* Most styling is handled by Bootstrap classes in the HTML */
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}

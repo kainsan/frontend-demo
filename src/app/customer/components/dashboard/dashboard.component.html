@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <form [formGroup]="searchForm" (ngSubmit)="submitForm()" class="d-flex shadow-sm">
+                <input type="text" class="form-control form-control-lg border-end-0 rounded-start"
+                    formControlName="title" placeholder="Search Product..." aria-label="Search Product">
+                <button class="btn btn-primary btn-lg rounded-end" type="submit" [disabled]="searchForm.invalid">
+                    <i class="material-icons align-middle">search</i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+        <div class="col" *ngFor="let product of products">
+            <div class="card h-100 shadow-sm product-card">
+                <div class="position-relative overflow-hidden" style="padding-top: 75%;">
+                    <img [src]="'data:image/jpeg;base64,' + product.byteImg"
+                        class="card-img-top position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+                        alt="Product Image">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-truncate" title="{{product.name}}">{{product.name}}</h5>
+                    <p class="card-text text-muted small flex-grow-1 product-desc">{{product.description}}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                        <span class="h5 mb-0 text-primary fw-bold">${{product.price}}</span>
+                        <button class="btn btn-outline-primary btn-sm" (click)="addToCart(product.id)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

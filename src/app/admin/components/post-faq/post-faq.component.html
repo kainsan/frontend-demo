@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="card shadow-lg p-4" style="max-width: 600px; margin: 0 auto; border-radius: 1rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 fw-bold text-primary">Post FAQ</h2>
+
+            <form [formGroup]="faqForm" (ngSubmit)="postFAQ()">
+                <div class="mb-3">
+                    <label for="question" class="form-label">Question</label>
+                    <textarea class="form-control" id="question" formControlName="question" rows="3"
+                        placeholder="Enter Question"
+                        [ngClass]="{'is-invalid': faqForm.get('question')?.invalid && faqForm.get('question')?.touched}"></textarea>
+                    <div class="invalid-feedback" *ngIf="faqForm.get('question')?.hasError('required')">
+                        Question is required.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="answer" class="form-label">Answer</label>
+                    <textarea class="form-control" id="answer" formControlName="answer" rows="5"
+                        placeholder="Enter Answer"
+                        [ngClass]="{'is-invalid': faqForm.get('answer')?.invalid && faqForm.get('answer')?.touched}"></textarea>
+                    <div class="invalid-feedback" *ngIf="faqForm.get('answer')?.hasError('required')">
+                        Answer is required.
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="faqForm.invalid">Post FAQ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

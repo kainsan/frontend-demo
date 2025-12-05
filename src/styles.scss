@@ -1,0 +1,36 @@
+/* Global Styles */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    /* Bootstrap light gray */
+}
+
+/* Utility Classes */
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Typography Overrides */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Angular Material Overrides (if needed to coexist) */
+.mat-mdc-card {
+    border-radius: 0.5rem !important;
+    /* Bootstrap-like radius */
+}

@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <div class="card shadow-lg p-4" style="max-width: 600px; margin: 0 auto; border-radius: 1rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 fw-bold text-primary">Write a Review</h2>
+
+            <form [formGroup]="reviewForm" (ngSubmit)="submitForm()">
+
+                <div class="mb-4 text-center">
+                    <label class="file-upload-label btn btn-outline-primary d-inline-flex align-items-center gap-2">
+                        <span>Upload Photo</span>
+                        <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+                        <i class="material-icons">attach_file</i>
+                    </label>
+                    <div *ngIf="selectedFile" class="image-preview mt-3">
+                        <img [src]="imagePreview" alt="Selected Image" class="img-thumbnail" style="max-height: 200px;">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <select class="form-select" id="rating" formControlName="rating"
+                        [ngClass]="{'is-invalid': reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched}">
+                        <option value="" disabled selected>Select Rating</option>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="1">1 - Poor</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="reviewForm.get('rating')?.hasError('required')">
+                        Rating is required.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Review</label>
+                    <textarea class="form-control" id="description" formControlName="description" rows="4"
+                        placeholder="Share your experience..."
+                        [ngClass]="{'is-invalid': reviewForm.get('description')?.invalid && reviewForm.get('description')?.touched}"></textarea>
+                    <div class="invalid-feedback" *ngIf="reviewForm.get('description')?.hasError('required')">
+                        Description is required.
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="reviewForm.invalid">Submit
+                        Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

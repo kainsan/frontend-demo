@@ -1,0 +1,47 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px; border-radius: 1rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 fw-bold text-primary">Login</h2>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" formControlName="username"
+                        placeholder="name@example.com"
+                        [ngClass]="{'is-invalid': loginForm.get('username')?.invalid && loginForm.get('username')?.touched}">
+                    <div class="invalid-feedback" *ngIf="loginForm.get('username')?.hasError('required')">
+                        Email is required.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="loginForm.get('username')?.hasError('email')">
+                        Please enter a valid email.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="password"
+                            formControlName="password" placeholder="Password"
+                            [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
+                        <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+                            <i class="material-icons" style="font-size: 1.2rem;">{{hidePassword ? 'visibility_off' :
+                                'visibility'}}</i>
+                        </button>
+                        <div class="invalid-feedback" *ngIf="loginForm.get('password')?.hasError('required')">
+                            Password is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="loginForm.invalid">Login</button>
+                </div>
+
+                <div class="text-center mt-3">
+                    <span class="text-muted">Don't have an account? </span>
+                    <a routerLink="/signup" class="text-decoration-none fw-bold">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

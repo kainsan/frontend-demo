@@ -1,0 +1,73 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 500px; border-radius: 1rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 fw-bold text-primary">Sign Up</h2>
+
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" formControlName="email"
+                        placeholder="name@example.com"
+                        [ngClass]="{'is-invalid': signupForm.get('email')?.invalid && signupForm.get('email')?.touched}">
+                    <div class="invalid-feedback" *ngIf="signupForm.get('email')?.hasError('required')">
+                        Email is required.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="signupForm.get('email')?.hasError('email')">
+                        Please enter a valid email.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" formControlName="name" placeholder="John Doe"
+                        [ngClass]="{'is-invalid': signupForm.get('name')?.invalid && signupForm.get('name')?.touched}">
+                    <div class="invalid-feedback" *ngIf="signupForm.get('name')?.hasError('required')">
+                        Name is required.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="password"
+                            formControlName="password" placeholder="Password"
+                            [ngClass]="{'is-invalid': signupForm.get('password')?.invalid && signupForm.get('password')?.touched}">
+                        <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+                            <i class="material-icons" style="font-size: 1.2rem;">{{hidePassword ? 'visibility_off' :
+                                'visibility'}}</i>
+                        </button>
+                        <div class="invalid-feedback" *ngIf="signupForm.get('password')?.hasError('required')">
+                            Password is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                        <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="confirmPassword"
+                            formControlName="confirmPassword" placeholder="Confirm Password"
+                            [ngClass]="{'is-invalid': signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched}">
+                        <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+                            <i class="material-icons" style="font-size: 1.2rem;">{{hidePassword ? 'visibility_off' :
+                                'visibility'}}</i>
+                        </button>
+                        <div class="invalid-feedback" *ngIf="signupForm.get('confirmPassword')?.hasError('required')">
+                            Confirm Password is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="signupForm.invalid">Sign
+                        Up</button>
+                </div>
+
+                <div class="text-center mt-3">
+                    <span class="text-muted">Already have an account? </span>
+                    <a routerLink="/login" class="text-decoration-none fw-bold">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

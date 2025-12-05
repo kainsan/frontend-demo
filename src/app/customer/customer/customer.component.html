@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>E-Commerce Customer</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/customer/dashboard">Products</button>
+    <button mat-button routerLink="/customer/cart">Cart</button>
+    <button mat-button routerLink="/customer/my_orders">Orders</button>
+    <button mat-button routerLink="/customer/wishlist">Wishlist</button>
+    <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/customer/dashboard" routerLinkActive="active-link">Products</a>
+            <a mat-list-item routerLink="/customer/cart" routerLinkActive="active-link">Cart</a>
+            <a mat-list-item routerLink="/customer/my_orders" routerLinkActive="active-link">Orders</a>
+            <a mat-list-item routerLink="/customer/wishlist" routerLinkActive="active-link">Wishlist</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

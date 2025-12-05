@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="card shadow-lg p-4" style="max-width: 600px; margin: 0 auto; border-radius: 1rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 fw-bold text-primary">Add Category</h2>
+
+            <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" formControlName="name" placeholder="Category Name"
+                        [ngClass]="{'is-invalid': categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched}">
+                    <div class="invalid-feedback" *ngIf="categoryForm.get('name')?.hasError('required')">
+                        Name is required.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" formControlName="description" rows="3"
+                        placeholder="Category Description"
+                        [ngClass]="{'is-invalid': categoryForm.get('description')?.invalid && categoryForm.get('description')?.touched}"></textarea>
+                    <div class="invalid-feedback" *ngIf="categoryForm.get('description')?.hasError('required')">
+                        Description is required.
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="categoryForm.invalid">Add
+                        Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
