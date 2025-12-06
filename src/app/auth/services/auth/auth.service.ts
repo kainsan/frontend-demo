@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 
-const BASIC_URL = "http://localhost:5454/";
+const BASIC_URL = "https://valiant-learning-production.up.railway.app/";
 
 @Injectable({
   providedIn: 'root'
