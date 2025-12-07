@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 // const tokenKey = 'token';
 const TOKEN = 'token';
@@ -63,4 +64,12 @@ export class UserStorageService {
     window.localStorage.removeItem(TOKEN);
     window.localStorage.removeItem(USER);
   }
+
+  private static loggedIn = new BehaviorSubject<boolean>(UserStorageService.isAdminLoggedIn() || UserStorageService.isCustomerLoggedIn());
+
+  static authStatus = UserStorageService.loggedIn.asObservable();
+
+  static setLoggedIn(status: boolean) {
+    this.loggedIn.next(status);
+}
 }

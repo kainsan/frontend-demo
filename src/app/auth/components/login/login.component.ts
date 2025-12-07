@@ -45,6 +45,8 @@ export class LoginComponent {
           this.userStorageService.saveToken(token);
           this.userStorageService.saveUser(user);
 
+          UserStorageService.setLoggedIn(true);
+
           this.snackBar.open('Login successful', 'Close', { duration: 5000 });
 
           if (UserStorageService.isAdminLoggedIn()) {
